@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>订货</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<link rel="stylesheet" href="css/app/order.css">
+		<script>
+			var scale_ids = [];
+			var goodsId = 1;
+		</script>
+	</head>
+	<body>
+		
+		<div class="swiper-container">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper" id="head-slider">
+				<!-- Slides -->
+				<div class="swiper-slide"><img src="img/slider/1.jpeg" /></div>
+				<div class="swiper-slide"><img src="img/slider/2.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/3.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/4.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/5.jpg" /></div>
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+	
+		<div class="weui-panel">
+			<div class="weui-panel__bd">
+				<div class="weui-media-box weui-media-box_text">
+					<h4 class="weui-media-box__title" id="pro-name">哈哈哈哈哈哈</h4>
+					<div class="weui-cells__title" id="pro-desc">描述描述描述描述描述描述描述描述描述描述</div>
+					<ul class="weui-media-box__info">
+						<li class="weui-media-box__info__meta" id="pro-price">￥218.00</li>
+					</ul>
+				</div>
+				<div class="weui-media-box weui-media-box_small-appmsg">
+					<a class="weui-cell weui-cell_access open-popup" id="open-scale-menu" href="javascript:;" data-target="#popup">
+						<div class="weui-cell__bd weui-cell_primary">
+							<p id="scale-value">点击选择产品规格</p>
+						</div>
+						<span class="weui-cell__ft"></span>
+					</a>
+				</div>
+				<div class="weui-media-box weui-media-box_text">
+					<h4 class="weui-media-box__title">数量</h4>
+					<div class="weui-media-box__amount">
+						<input class="ui-btn ui-btn_primary btn-sub" id="btn-sub" type="button" value="-" disabled>
+						<input class="ui-txb ui-txb_primary txb-amount" id="txb-am" type="text" value="1">
+						<input class="ui-btn ui-btn_primary btn-add" id="btn-add" type="button" value="+">
+					</div>
+				</div>
+				<div class="weui-media-box weui-media-box_text">
+					<h4 class="weui-media-box__title">详细</h4>
+					<div id="pro-more">暂无</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-btn__fixed_bottom">
+			<div class="weui-row weui-no-gutter">
+				<!--div class="weui-col-50">
+					<button class="weui-btn weui-btn_primary" disabled>加入清单</button>
+				</div-->
+				<div class="weui-col-100">
+					<button class="weui-btn weui-btn_warn" id="btn-submit">订购</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="ui-fill_bottom"></div>
+
+		<div id="popup" class='weui-popup__container popup-bottom'>
+			<div class="weui-popup__overlay"></div>
+			<div class="weui-popup__modal">
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<a href="javascript:;" class="picker-button close-popup">关闭</a>
+						<h1 class="title">选择产品规格</h1>
+					</div>
+				</div>
+				<div class="modal-content">
+					<div class="weui-panel weui-panel_access">
+						<div class="weui-panel__hd">
+							<div class="weui-media-box weui-media-box_appmsg">
+								<div class="weui-media-box__hd">
+									<img class="weui-media-box__thumb" id="popup-img" src="">
+								</div>
+								<div class="weui-media-box__bd">
+									<h4 class="weui-media-box__title" id="popup-price">￥218.00</h4>
+								</div>
+							</div>
+						</div>
+						<div class="weui-panel__bd" id="scale-list"></div>
+						<div class="weui-panel__ft">
+							<button class="weui-btn weui-btn_primary close-popup" id="btn-scale-confirm">确定</button>
+						</div>
+      				</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script>
+			function LoadProduct() {
+				var post_data = {
+					"goodsId": goodsId
+				}
+				$.ajax({
+			        type: "POST",
+					url: "http://" + window.location.host +"/Eclipse/P20170710/order-product-info.json",
+			        contentType: "application/json; charset=utf-8",
+			        data: JSON.stringify(post_data),
+			        dataType: "json",
+			        success: function (data) {
+			        	if(data.error_code != 0){
+							$.alert(data.error_msg, "提示");
+							return;
+			        	}
+						var price = data.info.goodsPrice / 100;
+			        	var html = "";
+			        	var sliders = data.info.goodsSlider;
+			        	//将图片写入轮播组件
+			        	for(i in sliders) {
+			        		html += "<div class=\"swiper-slide\"><img src=\"" + sliders[i] + "\" /></div>"
+			        	}
+			        	$("#head-slider").html(html);
+						$(".swiper-container").swiper({
+							loop: true,
+							autoplay: 3000
+						});
+						$("#pro-name").html(data.info.goodsName);
+						$("#pro-desc").html(data.info.goodsDesc);
+						$("#pro-price").html("￥" + price);
+						$("#popup-img").attr("src", data.info.goodsPic);
+						$("#popup-price").html("￥" + price);
+						$("#pro-more").html(data.info.goodsMore || "暂无");
+						
+						var scales = data.info.goodsScales;
+						pro_scales = scales;
+						html = "";
+						scale_ids.splice(0, scale_ids.length);
+						for(i in scales){
+							html += "<div class=\"weui-media-box weui-media-box_text scales-area\">";
+							html += "<h4 class=\"weui-media-box__title\">" + scales[i].scaleType + "</h4>";
+							html += "<div class=\"weui-media-box__radio\">";
+							var rdo_name = "rdo-" + i;
+							var names = data.info.goodsScales[i].scales;
+							for(j in names){
+								var rdo_id = "scl-" + i + "-" + j;
+								html += "<label class=\"ui-radio-box\" for=\"" + rdo_id +  "\">";
+								html += "<input type=\"radio\" name=\"" + rdo_name + "\" class=\"weui-check ui-radio\" id=\"" + rdo_id + "\" value=\"" + names[j].scaleId + "\" data-value=\"" + names[j].scaleName + "\">";
+								html += "<span class=\"ui-radio-text\">" + names[j].scaleName + "</span>";
+								html += "</label>\n";
+							}
+							html += "</div>";
+							html += "</div>";
+							scale_ids.push(
+								{
+									"name": rdo_name,
+									"id": "",
+								}
+							);
+						}
+						$("#scale-list").html(html);
+			        },
+			        error: function (data) {
+						$.alert("提交失败", "提示");
+						return;
+			        }
+			    });
+			}
+		</script>
+		<script>
+			$(document).ready(function (){
+				LoadProduct();
+			});
+			
+			$("#btn-sub").click(function (){
+				var amount = $("#txb-am").val();
+				if(isNaN(amount)) {
+					$("#txb-am").val("1");
+					return;
+				}
+				if(amount <= 1) {
+					$("#txb-am").val("1");
+					return;
+				}
+				--amount;
+				$("#txb-am").val(amount);
+				if(amount == 1){
+					$(this).attr("disabled", "disabled");
+				}
+			});
+			
+			$("#btn-add").click(function (){
+				var amount = $("#txb-am").val();
+				if(isNaN(amount)) {
+					$("#txb-am").val("1");
+					return;
+				}
+				if(amount < 1) {
+					$("#txb-am").val("1");
+					return;
+				}
+				++amount;
+				$("#txb-am").val(amount);
+				if(amount > 1){
+					$("#btn-sub").removeAttr("disabled");
+				}
+			});
+			
+			$("#open-scale-menu").click(function (){
+				$("#scale-list [type=radio]:checked").prop("checked", false);
+				if(scale_ids.length == 0){
+					return;
+				}
+				for(i in scale_ids){
+					var id = scale_ids[i].id;
+					if(scale_ids[i].id != ""){
+						$("#scale-list #" + id).prop("checked", true);
+					}
+				}
+			});
+			
+			$("#btn-scale-confirm").click(function (){
+				var text = "";
+				for(i in scale_ids){
+					var name = scale_ids[i].name;
+					var radios = $("#scale-list [name=" + name + "]:checked");
+					if(radios.length > 0){
+						scale_ids[i].id = radios.attr("id");
+						text += radios.attr("data-value") + " ";
+					}else{
+						scale_ids[i].id = "";
+					}
+				}
+				if(text == ""){
+					$("#scale-value").html("选择产品规格");
+				}else{
+					$("#scale-value").html(text);
+				}
+			});
+			
+			$("#btn-submit").click(function (){
+				var amount = $("#txb-am").val();
+				if(isNaN(amount)){
+					$.toast("数量需要为一个整数", "forbidden");
+					return;
+				}
+				var post_data = {
+					"goodsId": goodsId,
+					"goodsScales": [],
+					"orderNum": amount
+				};
+				for(i in scale_ids){
+					if(scale_ids[i].id != ""){
+						post_data.goodsScales.push($("#" + scale_ids[i].id).val());
+					}else{
+						$.toast("请选择产品的规格", "forbidden");
+						return;
+					}
+				}
+				$.ajax({
+			        type: "POST",
+					url: "http://" + window.location.host +"/Eclipse/P20170710/order-result.json",
+			        contentType: "application/json; charset=utf-8",
+			        data: JSON.stringify(post_data),
+			        dataType: "json",
+			        success: function (data) {
+			        	if(data.error_code != 0){
+							$.alert(data.error_msg, "提示");
+							return;
+			        	}
+			        	window.location.href = "http://" + window.location.host +"/Eclipse/P20170710/msg.html";
+			        },
+			        error: function (data) {
+						$.alert("提交失败", "提示");
+						return;
+			        }
+				});
+			});
+		</script>
+	</body>
+</html>

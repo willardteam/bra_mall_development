@@ -1,0 +1,17 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"title": "提示 - 成功",
+	"message": {
+		"title": "成功",
+		"content": "111111111111111",
+		"icon": "weui-icon-success weui-icon_msg",
+		"redirect": [
+			{
+				"url": "javascript:if(typeof(WeixinJSBridge)!='undefined'){WeixinJSBridge.call('closeWindow');}",
+				"text": "返回公众号",
+				"style": "weui-btn weui-btn_default"
+			}
+		]
+	}
+}

@@ -1,0 +1,1 @@
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31f8f520ac618811&redirect_uri=http%3a%2f%2fm.lucky-soldier.cn%2fWechatProject%2fapplicant%2fgetvotelistpage.action&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect

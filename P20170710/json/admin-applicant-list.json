@@ -1,0 +1,48 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"data": [
+		{
+			"applyId": "1",
+			"agentName": "Jesse",
+			"agentAddr": "New mexico",
+			"recommender": "Walter",
+			"recommenderId": "44010001",
+			"agentRank": "1",
+			"agentPhone": "13800138000",
+			"createTime": "1997-01-01 00:00:00"
+		},
+		{
+			"applyId": "2",
+			"agentName": "Walter Jr",
+			"agentAddr": "New mexico",
+			"recommender": "Walter",
+			"recommenderId": "44010001",
+			"agentRank": "2",
+			"agentPhone": "13800138000",
+			"createTime": "1997-01-01 00:00:00"
+		},
+		{
+			"applyId": "3",
+			"agentName": "Skyler",
+			"agentAddr": "New mexico",
+			"recommender": "Walter",
+			"recommenderId": "44010001",
+			"agentRank": "3",
+			"agentPhone": "13800138000",
+			"createTime": "1997-01-01 00:00:00"
+		},
+		{
+			"applyId": "4",
+			"agentName": "Gustavo",
+			"agentAddr": "New mexico",
+			"recommender": "Walter",
+			"recommenderId": "44010001",
+			"agentRank": "1",
+			"agentPhone": "13800138000",
+			"createTime": "1997-01-01 00:00:00"
+		}
+	],
+	"current_page": 1,
+	"last_page": 2
+}

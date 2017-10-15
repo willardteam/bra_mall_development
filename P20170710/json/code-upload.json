@@ -1,0 +1,10 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"statistics": {
+		"total": 100,
+		"success": 99,
+		"fail": 1
+	},
+	"fail_list": []
+}

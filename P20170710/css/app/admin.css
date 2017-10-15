@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.weuix-shadow {
+	margin: 15px;
+}
+
+
+/* wechat background */
+.weuix-wechat_bg {
+	background-color: #ebebeb;
+}
+
+.weuix-input-select {
+	text-align: right;
+	color: #10aeff;
+}

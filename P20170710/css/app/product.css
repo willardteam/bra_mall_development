@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+.ui-pro {
+	margin: 10px;
+}
+
+.ui-pro_img {
+	
+}
+
+.ui-pro_img img {
+	width: 100%;
+}
+
+.ui-pro_name {
+	color: #c0c0c0;
+	line-height: 24px;
+	height: 48px;
+	overflow: hidden;
+	font-size: 20px;
+}
+
+.ui-pro_price {
+	float: left;
+	display: inline-block;
+	color: #fa9090;
+}
+
+.ui-pro_sold {
+	float:right;
+	display: inline-block;
+	color: #c0c0c0;
+}
+
+
+.swiper-container {
+	width: 100%;
+}
+
+.swiper-container img {
+	display: block;
+	width: 100%;
+}

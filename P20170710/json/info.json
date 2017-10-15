@@ -1,0 +1,13 @@
+{
+	"error_code": 0,
+	"error_msg": "xxx",
+	"info":{
+		"agentName": "Jesse",
+		"agentAddr": "Guangzhou, Guangdong",
+		"agentRank": "2",
+		"agentId": "44010002",
+		"recommender": "Walter",
+		"recommenderId": "44010001",
+		"headimgurl": "http://192.168.3.203/Eclipse/P20170710/img/portrait/2.png"
+	}
+}

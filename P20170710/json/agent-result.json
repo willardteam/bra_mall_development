@@ -1,0 +1,10 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"info": {
+		"agentName": "Jesse",
+		"agentRank": "2",
+		"agentPhone": "13800138000",
+		"agentAddr": "Guangzhou, Guangdong"
+	}
+}

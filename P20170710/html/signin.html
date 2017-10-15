@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>代理申请</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<style>
+			.form-title {
+				text-align: center;
+			    font-size: 34px;
+			    color: #3cc51f;
+			    font-weight: 400;
+			    margin: 0 15%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="form-title">代理申请</h1>
+		<form>
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+					<div class="weui-cell__bd">
+					    <input class="weui-input" id="name" type="text" placeholder="请输入您的姓名">
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells__title">请选择您所在的城市</div>
+			<div class="weui-cells weui-cells_form">
+      			<div class="weui-cell">
+      				<div class="weui-cell__hd"><label for="city" class="weui-label">城市</label></div>
+       				<div class="weui-cell__bd">
+       					<input class="weui-input" id="city" type="text">
+       				</div>
+   				</div>
+   			</div>
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label class="weui-label">推荐人ID</label></div>
+					<div class="weui-cell__bd">
+					    <input class="weui-input" id="referrer" type="text" placeholder="请输入推荐人的ID">
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells__title">申请的代理等级</div>
+			<div class="weui-cells">
+				<div class="weui-cell weui-cell_select">
+					<div class="weui-cell__bd">
+						<select class="weui-select" id="degree">
+							<option value="1" selected>一级代理</option>
+							<option value="2">二级代理</option>
+							<option value="3">三级代理</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
+					<div class="weui-cell__bd">
+					    <input class="weui-input" id="phone" type="text" pattern="[0-9]*" placeholder="请填入您的手机号码">
+					</div>
+					<div class="weui-cell__ft" style="display:none">
+          				<i class="weui-icon-warn"></i>
+        			</div>
+				</div>
+			</div>
+			<div class="weui-btn-area">
+				<input class="weui-btn weui-btn_primary" id="btn-login" type="button" value="申请">
+			</div>
+		</form>
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/city-picker.min.js"></script>
+		<script>
+			$(function() {
+			    FastClick.attach(document.body);
+			});
+			$("#city").cityPicker({
+				title: "选择目的地",
+				showDistrict: false,
+				onChange: function (picker, values, displayValues) {
+					console.log(values, displayValues);
+				}
+			});
+			$(document).ready(function(){
+				$("#btn-login").click(function(){
+					var name = $("#name").val() || "";
+					var city = $("#city").attr("data-code") || "";
+					var referrer = $("#referrer").val() || "";
+					var degree = $("#degree").val() || "";
+					var phone = $("#phone").val() || "";
+					if(name == ""){
+						$.toast("姓名不能为空", "forbidden");
+						return;
+					}
+					if(city == ""){
+						$.toast("请选择您所在的城市", "forbidden");
+						return;
+					}
+					if(referrer == ""){
+						$.toast("推荐人ID不能为空", "forbidden");
+						return;
+					}
+					if(phone == ""){
+						$.toast("手机号不能为空", "forbidden");
+						return;
+					}
+					var reg = /^\d{11}$/;
+					var re = phone.match(reg);
+					if(!re){
+						$.toast("手机号格式不正确", "forbidden");
+						return;
+					}
+					var post_data = {
+							"name": name,
+							"city": city,
+							"referrer": referrer,
+							"degree": degree,
+							"phone": phone
+					};
+					$.ajax({
+				        type: "POST",
+						url: "localhost",//注册地址
+				        contentType: "application/json; charset=utf-8",
+				        data: JSON.stringify(post_data),
+				        dataType: "json",
+				        success: function (data) {
+							if(data.error_code != 0){
+								$.alert(data.error_msg, "错误");
+								return;
+							}
+							window.location.href = "";//跳转地址
+				        },
+				        error: function (data) {
+							$.alert("提交失败", "提示");
+							return;
+				        }
+				    });
+				});
+			});
+		</script>
+	</body>
+</html>

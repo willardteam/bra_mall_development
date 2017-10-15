@@ -1,0 +1,130 @@
+.weui-btn {
+	cursor: pointer;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.form-title {
+	text-align: center;
+    font-size: 34px;
+    color: #3cc51f;
+    font-weight: 400;
+    margin: 0 15%;
+}
+
+.ui-header {
+	padding: 10px 0 0 0;
+}
+
+.ui-portrait-area, .ui-title-area, .ui-detail-area {
+	
+	text-align: center;
+	
+	margin: 0 0;
+}
+
+.ui-detail-area p{
+	color: #c0c0c0;
+}
+
+
+.ui-rportrait {
+	display: inline-block;
+}
+
+.ui-rportrait img{
+	height: 75px;
+	width: 75px;
+	
+	border-radius: 75px;
+}
+
+.weui-form-preview__btn_primary[disabled]{
+	color: rgba(0,0,0,.3);
+	background-color: #f7f7f7;
+}
+
+.ui-red-icon {
+	outline-color: #ff0000;
+}
+
+.weui-check__label:active {
+	background-color: transparent;
+}
+
+.weui-check__label:active .ui-red-icon {
+	box-shadow: 0 0 6px #ff0000;
+}
+
+.ui-green-icon {
+	outline-color: #00ff00;
+}
+
+.weui-check__label:active .ui-green-icon {
+	box-shadow: 0 0 6px #00ff00;
+}
+
+.ui-blue-icon {
+	outline-color: #0000ff;
+}
+
+.weui-check__label:active .ui-blue-icon {
+	box-shadow: 0 0 6px #0000ff;
+}
+
+.ui-black-icon {
+	outline-color: #000000;
+}
+
+.weui-check__label:active .ui-black-icon {
+	box-shadow: 0 0 6px #000000;
+}
+
+.ui-red-icon,
+.ui-green-icon,
+.ui-blue-icon,
+.ui-black-icon{
+	height: 12px;
+	width: 12px;
+	margin: 1px;
+	outline-style: solid;
+	outline-width: 2px;
+	border: 2px solid #ffffff;
+	background-color: #ffffff;
+	display: inline-block;
+	margin: 0 3px;
+}
+
+.ui-color-check:checked+.ui-red-icon{
+	box-shadow: 0 0 6px #ff0000;
+	background-color: #ff0000;
+}
+
+.ui-color-check:checked+.ui-green-icon{
+	box-shadow: 0 0 6px #00ff00;
+	background-color: #00ff00;
+}
+
+.ui-color-check:checked+.ui-blue-icon{
+	box-shadow: 0 0 6px #0000ff;
+	background-color: #0000ff;
+}
+
+.ui-color-check:checked+.ui-black-icon {
+	box-shadow: 0 0 6px #000000;
+	background-color: #000000;
+}
+
+.ui-color-check:checked+.ui-red-icon:before,
+.ui-color-check:checked+.ui-green-icon:before,
+.ui-color-check:checked+.ui-blue-icon:before,
+.ui-color-check:checked+.ui-black-icon:before {
+
+}
+
+.ui-color-check{
+    position: absolute;
+    left: -9999em;
+}

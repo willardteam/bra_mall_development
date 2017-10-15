@@ -1,0 +1,86 @@
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>个人主页</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<link rel="stylesheet" href="css/weuix.css">
+		<style>
+			.weui-form-preview__btn_primary:disabled {
+				color: rgba(0,0,0,.3);
+				background-color: #f7f7f7;
+			}
+			
+			#invited-list .weui-form-preview__item {
+				text-align: center;
+			}
+		</style>
+		<script>
+			var agents = [];var current_page = 1;var last_page = 1;
+		</script>
+	</head>
+	<body>
+		<div class="weuix-uc_header">
+			<div class="weuix-uc_header__portrait">
+				<div class="weuix-circle_portrait" id="user-portrait">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAeFBMVEUAwAD///+U5ZTc9twOww7G8MYwzDCH4YcfyR9x23Hw+/DY9dhm2WZG0kbT9NP0/PTL8sux7LFe115T1VM+zz7i+OIXxhes6qxr2mvA8MCe6J6M4oz6/frr+us5zjn2/fa67rqB4IF13XWn6ad83nxa1loqyirn+eccHxx4AAAC/klEQVRo3u2W2ZKiQBBF8wpCNSCyLwri7v//4bRIFVXoTBBB+DAReV5sG6lTXDITiGEYhmEYhmEYhmEYhmEY5v9i5fsZGRx9PyGDne8f6K9cfd+mKXe1yNG/0CcqYE86AkBMBh66f20deBc7wA/1WFiTwvSEpBMA2JJOBsSLxe/4QEEaJRrASP8EVF8Q74GbmevKg0saa0B8QbwBdjRyADYxIhqxAZ++IKYtciPXLQVG+imw+oo4Bu56rjEJ4GYsvPmKOAB+xlz7L5aevqUXuePWVhvWJ4eWiwUQ67mK51qPj4dFDMlRLBZTqF3SDvmr4BwtkECu5gHWPkmDfQh02WLxXuvbvC8ku8F57GsI5e0CmUwLz1kq3kD17R1In5816rGvQ5VMk5FEtIiWislTffuDpl/k/PzscdQsv8r9qWq4LRWX6tQYtTxvI3XyrwdyQxChXioOngH3dLgOFjk0all56XRi/wDFQrGQU3Os5t0wJu1GNtNKHdPqYaGYQuRDfbfDf26AGLYSyGS3ZAK4S8XuoAlxGSdYMKwqZKM9XJMtyqXi7HX/CiAZS6d8bSVUz5J36mEMFDTlAFQzxOT1dzLRljjB6+++ejFqka+mXIe6F59mw22OuOw1F4T6lg/9VjL1rLDoI9Xzl1MSYDNHnPQnt3D1EE7PrXjye/3pVpr1Z45hMUdcACc5NVQI0bOdS1WA0wuz73e7/5TNqBPhQXPEFGJNV2zNqWI7QKBd2Gn6AiBko02zuAOXeWIXjV0jNqdKegaE/kJQ6Bfs4aju04lMLkA2T5wBSYPKDGF3RKhFYEa6A1L1LG2yacmsaZ6YPOSAMKNsO+N5dNTfkc5Aqe26uxHpx7ZirvgCwJpWq/lmX1hA7LyabQ34tt5RiJKXSwQ+0KU0V5xg+hZrd4Bn1n4EID+WkQdgLfRNtvil9SPfwy+WQ7PFBWQz6dGWZBLkeJFXZGCfLUjCgGgqXo5TuSu3cugdcTv/HjqnBTEMwzAMwzAMwzAMwzAMw/zf/AFbXiOA6frlMAAAAABJRU5ErkJggg==">
+				</div>
+			</div>
+			<div class="weuix-uc_header__title" id="user-name">
+				<h2>姓名</h2>
+			</div>
+			<div class="weuix-uc_header__text">
+				<p id="user-rank">经销商等级</p>
+				<p id="user-addr">地址</p>
+				<p id="user-rcmd">推荐人</p>
+			</div>
+		</div>
+		
+		<div class="weui-grids">
+			<a href="javascript:if(agents.length==0){LoadInvitedList(1, 10);}else{WriteList();}" class="weui-grid js_grid open-popup" data-target="#half">
+				<div class="weui-grid__icon">
+					<img src="http://localhost/Eclipse/P20170710/img/portrait/2.png" alt="">
+				</div>
+				<p class="weui-grid__label">我推荐的人</p>
+			</a>
+		</div>
+		
+		<div id="half" class='weui-popup__container popup-bottom'>
+			<div class="weui-popup__overlay"></div>
+			<div class="weui-popup__modal">
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<a href="javascript:;" class="picker-button close-popup">关闭</a>
+						<h1 class="title">我推荐的人</h1>
+					</div>
+				</div>
+				<div class="modal-content">
+				
+					<div class="weui-form-preview" id="invited-list-form">
+						<div class="weui-form-preview__bd" id="invited-list">
+						</div>
+						<div class="weui-form-preview__ft">
+							<button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="btn-lastpage" onclick="LastPage();">上一页</button>
+							<button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="btn-nextpage" onclick="NextPage();">下一页</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/user.js"></script>
+		<script src="js/app/home.js"></script>
+		<script>
+			$(function() {
+			    FastClick.attach(document.body);
+			});
+			$(document).ready(function(){
+				LoadUserInfo();
+			});
+		</script>
+	</body>
+</html>

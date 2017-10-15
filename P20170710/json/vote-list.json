@@ -1,0 +1,45 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"list": [
+		{
+			"agentId": "44010002",
+			"agentName": "Jesse",
+			"agentAddr": "New mexico",
+			"agentVotes": 122,
+			"headimgurl": "http://192.168.0.104/Eclipse/P20170710/img/portrait/2.png",
+			"isVoted": true
+		},
+		{
+			"agentId": "44010003",
+			"agentName": "Walter Jr",
+			"agentAddr": "New mexico, America",
+			"agentVotes": 123,
+			"headimgurl": "http://192.168.0.104/Eclipse/P20170710/img/portrait/1.png",
+			"isVoted": false
+		},
+		{
+			"agentId": "44010004",
+			"agentName": "Skyler",
+			"agentAddr": "New mexico",
+			"agentVotes": 103,
+			"headimgurl": "http://192.168.0.104/Eclipse/P20170710/img/portrait/1.png",
+			"isVoted": true
+		},
+		{
+			"agentId": "44010005",
+			"agentName": "Gustavo",
+			"agentAddr": "New mexico",
+			"agentVotes": 173,
+			"headimgurl": "http://192.168.0.104/Eclipse/P20170710/img/portrait/2.png",
+			"isVoted": false
+		}
+	],
+	"info": {
+		"district": "1",
+		"districtName": "Huadong"
+	}
+	,
+	"current_page": 2,
+	"last_page": 2
+}

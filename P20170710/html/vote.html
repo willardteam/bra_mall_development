@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>产品列表</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<link rel="stylesheet" href="css/weuix.css">
+		<style>
+			.no-wrap-hidden {
+				overflow: hidden;
+			}
+			
+			.no-wrap-hidden>p {
+				white-space: nowrap;
+			}
+			.text-right {
+				text-align: right;
+			}
+			
+			.swiper-container {
+				width: 100%;
+			}
+
+			.swiper-container img {
+				display: block;
+				width: 100%;
+			}
+		</style>
+		<script>
+			var vote_list = [];
+			var current_page = 1;
+			var last_page = 1;
+			var district_type = 1;
+			var district = 0;
+			var page_size = 20;
+		</script>
+	</head>
+	<body>
+		<div class="swiper-container">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide"><img src="img/slider/1.jpeg" /></div>
+				<div class="swiper-slide"><img src="img/slider/2.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/3.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/4.jpg" /></div>
+				<div class="swiper-slide"><img src="img/slider/5.jpg" /></div>
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+		
+		<div class="weui-tab weuix-tab" id="vote-tab">
+			<div class="weui-navbar">
+				<a class="weui-navbar__item weui-bar__item--on" href="#tab1" onclick="district_type=1;district=0;current_page=1;LoadVoteList(1, page_size);">地区榜</a>
+				<a class="weui-navbar__item" href="#tab2" onclick="district_type=2;district=0;current_page=1;LoadVoteList(1, page_size);">全国榜</a>
+			</div>
+			<div class="weui-tab__bd">
+				<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+					<div class="weui-cells weui-cells_form">
+						<div class="weui-cell">
+							<div class="weui-cell__hd"><label for="vote-district" class="weui-label">选择地区</label></div>
+							<div class="weui-cell__bd">
+								<input class="weui-input" id="vote-district" type="text" value="" readonly="" data-values="">
+							</div>
+						</div>
+					</div>
+					<div id="vote-list-01">
+						
+					</div>
+				</div>
+				<div id="tab2" class="weui-tab__bd-item">
+					<div id="vote-list-02">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<button class="weuix-btn_prev" id="btn-lastpage" onclick="LastPage()"></button>
+		<button class="weuix-btn_next" id="btn-nextpage" onclick="NextPage()"></button>
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/app/vote.js"></script>
+		<script>
+			$(".swiper-container").swiper({
+				loop: true,
+				autoplay: 3000
+			});
+			
+			$(document).ready(function (){
+				LoadVoteList(current_page, page_size);
+			});
+			
+			$("#vote-district").select({
+				title: "选择手机",
+				items: [
+					{
+						title: "华东地区",
+						value: "1",
+					},
+					{
+						title: "华南地区",
+						value: "2",
+					},
+					{
+						title: "华中地区",
+						value: "3",
+					},
+					{
+						title: "华北地区",
+						value: "4",
+					},
+					{
+						title: "西北地区",
+						value: "5",
+					},
+					{
+						title: "西南地区",
+						value: "6",
+					},
+					{
+						title: "东北地区",
+						value: "7",
+					},
+					{
+						title: "台港澳地区",
+						value: "8",
+					}
+				],
+				onChange: function (d) {
+					district_type = 1;
+					district = parseInt(d.values);
+					LoadVoteList(1, page_size);
+				}
+			});
+		</script>
+	</body>
+</html>

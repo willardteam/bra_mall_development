@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<setting>
+	<upload>
+		<url>http://www.szyzm168.cn/WechatProject/code/uploadcodelist.action</url>
+	</upload>
+	<columns>
+		<column field="code" text="防伪码" type="string">2</column>
+	</columns>
+</setting>

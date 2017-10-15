@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>提示</title>
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.min.css">
+		<script>
+			var msg_id = 1;
+		</script>
+	</head>
+	<body>
+		<div class="weui-msg">
+    		<div class="weui-msg__icon-area"><i class="weui-icon-info weui-icon_msg" id="msg-icon"></i></div>
+   			<div class="weui-msg__text-area">
+			    <h2 class="weui-msg__title" id="msg-title">出错</h2>
+			    <p class="weui-msg__desc" id="msg-desc">这里是哪里？</p>
+   			</div>
+		    <div class="weui-msg__opr-area" id="msg-btns">
+		        <p class="weui-btn-area">
+			        <a href="javascript:if(typeof(WeixinJSBridge) != 'undefined'){WeixinJSBridge.call('closeWindow');}" class="weui-btn weui-btn_primary">返回公众号</a>
+		        </p>
+		    </div>
+  		</div>
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.min.js"></script>
+		<script>
+			function LoadMessage() {
+				var post_data = {
+					"msgId": msg_id
+				};
+				$.ajax({
+			        type: "POST",
+					url: "http://" + window.location.host + "/Eclipse/P20170710/msg-result.json",//查询经销商地址
+			        contentType: "application/json; charset=utf-8",
+			        data: JSON.stringify(post_data),
+			        dataType: "json",
+			        success: function (data) {
+			        	if(data.error_code != 0){
+							$.alert(data.error_msg, "提示");
+							return;
+			        	}
+			        	$("title").html(data.title);
+			        	var msg = data.message;
+			        	$("#msg-icon").attr("class", msg.icon);
+			        	$("#msg-title").html(msg.title);
+			        	$("#msg-desc").html(msg.content);
+			        	var html = "";
+			        	for(i in msg.redirect){
+			        		html += "<p class=\"weui-btn-area\">";
+			        		html += "<a href=\"" + msg.redirect[i].url + "\" class=\"" + msg.redirect[i].style + "\">" + msg.redirect[i].text + "</a>";
+			        		html += "</p>";
+			        	}
+			        	$("#msg-btns").html(html);
+			        },
+			        error: function (data) {
+						$.alert("提交失败", "提示");
+						return;
+			        }
+			    });
+			}
+		</script>
+		<script>
+			$(document).ready(function (){
+				LoadMessage();
+			});
+		</script>
+	</body>
+</html>

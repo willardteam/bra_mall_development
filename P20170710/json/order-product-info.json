@@ -1,0 +1,84 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"info": {
+		"goodsId": "1",
+		"goodsName": "JinKeLa",
+		"goodsDesc": "Detail",
+		"goodsMore": "<img src=\"http:\/\/192.168.0.104\/Eclipse\/P20170710\/img\/slider\/5.jpg\" style=\"width: 100%\">",
+		"goodsPrice": 10000,
+		"goodsSold": 0,
+		"goodsScales": [
+			{
+				"scaleType": "Color",
+				"scales": [
+					{
+						"scaleId": "1",
+						"scaleName": "Red"
+					},
+					{
+						"scaleId": "2",
+						"scaleName": "Green"
+					},
+					{
+						"scaleId": "3",
+						"scaleName": "Blue"
+					},
+					{
+						"scaleId": "4",
+						"scaleName": "Black"
+					}
+				]
+			},
+			{
+				"scaleType": "Size",
+				"scales": [
+					{
+						"scaleId": "5",
+						"scaleName": "70A"
+					},
+					{
+						"scaleId": "6",
+						"scaleName": "70B"
+					},
+					{
+						"scaleId": "7",
+						"scaleName": "75A"
+					},
+					{
+						"scaleId": "8",
+						"scaleName": "75B"
+					},
+					{
+						"scaleId": "9",
+						"scaleName": "75B"
+					},
+					{
+						"scaleId": "10",
+						"scaleName": "75B"
+					},
+					{
+						"scaleId": "11",
+						"scaleName": "75B"
+					},
+					{
+						"scaleId": "12",
+						"scaleName": "75B"
+					},
+					{
+						"scaleId": "13",
+						"scaleName": "75B"
+					}
+				]
+			}
+		],
+		"goodsPic": "http://192.168.0.104/Eclipse/P20170710/img/portrait/1.png",
+		"goodsSlider": [
+			"http://192.168.0.104/Eclipse/P20170710/img/slider/1.jpeg",
+			"http://192.168.0.104/Eclipse/P20170710/img/slider/2.jpg",
+			"http://192.168.0.104/Eclipse/P20170710/img/slider/3.jpg",
+			"http://192.168.0.104/Eclipse/P20170710/img/slider/4.jpg",
+			"http://192.168.0.104/Eclipse/P20170710/img/slider/5.jpg"
+		]
+	}
+}

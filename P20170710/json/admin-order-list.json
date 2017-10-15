@@ -1,0 +1,50 @@
+{
+	"error_code": 0,
+	"error_msg": "success",
+	"list": [
+		{
+			"orderId": "1",
+			"agentId": "44010002",
+			"agentName": "Jesse",
+			"agentPhone": "13800138000",
+			"agentAddr": "Guangzhou, Guangdong",
+			"agentRank": "2",
+			"goodsId": "1",
+			"goodsName": "JinKeLa",
+			"goodsScale": [
+				{
+					"scaleType": "Color",
+					"scaleName": "Red"
+				},
+				{
+					"scaleType": "Size",
+					"scaleName": "36A"
+				}
+			],
+			"orderNum": 100
+		},
+		{
+			"orderId": "2",
+			"agentId": "44010002",
+			"agentName": "Jesse",
+			"agentPhone": "13800138000",
+			"agentAddr": "Guangzhou, Guangdong",
+			"agentRank": "2",
+			"goodsId": "1",
+			"goodsName": "JinKeLa",
+			"goodsScale": [
+				{
+					"scaleType": "Color",
+					"scaleName": "Black"
+				},
+				{
+					"scaleType": "Size",
+					"scaleName": "36A"
+				}
+			],
+			"orderNum": 100
+		}
+	],
+	"current_page": 1,
+	"last_page": 2
+}

@@ -1,0 +1,13 @@
+﻿/opt/app/apache-tomcat-7.0.22/bin/shutdown.sh
+rm -rf /opt/app/apache-tomcat-7.0.22/webapps/WechatProject.war
+rm -rf /opt/app/apache-tomcat-7.0.22/webapps/WechatProject
+mv /home/tom/WechatProject.war /opt/app/apache-tomcat-7.0.22/webapps/
+/opt/app/apache-tomcat-7.0.22/bin/startup.sh
+
+mv /home/tom/CoreController.class /opt/app/apache-tomcat-7.0.22/webapps/WechatProject/WEB-INF/classes/
+
+
+
+
+bin/catalina.sh run > /dev/null 2>&1
+119.23.45.158
