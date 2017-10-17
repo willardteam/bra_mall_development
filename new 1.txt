@@ -11,4 +11,5 @@ mv /home/tom/CoreController.class /opt/app/apache-tomcat-7.0.22/webapps/WechatPr
 
 bin/catalina.sh run > /dev/null 2>&1
 119.23.45.158
+
 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31f8f520ac618811&redirect_uri=http%3a%2f%2fm.lucky-soldier.cn%2fWechatProject%2fapplicant%2fgetvotelistpage.action&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
